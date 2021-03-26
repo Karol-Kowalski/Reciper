@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import Header from './Header';
 
 const GlobalStyles = createGlobalStyle`
 
@@ -10,6 +11,7 @@ export default function Page({ children }) {
   return (
     <>
       <GlobalStyles />
+      <Header />
       <InnerStyle>{children}</InnerStyle>
     </>
   );
