@@ -1,5 +1,5 @@
 import Recepies from './recepies';
 
-export default function Main() {
+export default function MainPage() {
   return <Recepies />;
 }
