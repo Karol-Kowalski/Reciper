@@ -17,7 +17,7 @@ export default function Header() {
           <Link href="/" passHref>
             <div>
               <h2>RECIPER</h2>
-              <h3>Be ECO</h3>
+              <h3>be ECO</h3>
             </div>
           </Link>
         </Logo>

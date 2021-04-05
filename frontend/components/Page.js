@@ -9,8 +9,11 @@ const GlobalStyles = createGlobalStyle`
   --grey: #3A3A3A;
   --orange: orange;
   --white: #dddddd;
+  --loader: #2872FB;
 }
-
+*, *:before, *:after {
+    box-sizing: inherit;
+  }
 html {
   background-color: var(--black);
   color: var(--white);
