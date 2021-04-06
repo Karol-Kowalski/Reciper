@@ -1,6 +1,8 @@
+import { Recipe } from './schema/Recipe';
 import { createAuth } from '@keystone-next/auth';
 import { withItemData, statelessSessions } from '@keystone-next/keystone/session';
 import { User } from './schema/User';
+import { Product } from './schema/Product';
 import { config, createSchema } from '@keystone-next/keystone/schema';
 import 'dotenv/config';
 
@@ -35,6 +37,8 @@ export default withAuth(
     },
     lists: createSchema({
       User,
+      Product,
+      Recipe,
       //Schema items go in here
     }),
     ui: {
