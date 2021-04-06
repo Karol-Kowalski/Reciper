@@ -1,4 +1,4 @@
-import { relationship, select, text } from "@keystone-next/fields";
+import { integer, relationship, select, text } from "@keystone-next/fields";
 import { list } from "@keystone-next/keystone/schema";
 
 export const Recipe = list({
@@ -18,6 +18,10 @@ export const Recipe = list({
         inlineCreate: { fields: ['image', 'altText'] },
         inlineEdit: { fields: ['image', 'altText'] },
       },
+    }),
+    recipeProducts: relationship({
+      ref: 'Product',
+      many: true,
     }),
     status: select({
       options: [

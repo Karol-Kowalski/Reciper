@@ -1,8 +1,7 @@
-import { Recipe } from './Recipe';
-import 'dotenv/config';
 import { relationship, text } from "@keystone-next/fields";
 import { list } from "@keystone-next/keystone/schema";
 import { cloudinaryImage } from '@keystone-next/cloudinary';
+import 'dotenv/config';
 
 export const cloudinary = {
   cloudName: process.env.CLOUDINARY_CLOUD_NAME,
