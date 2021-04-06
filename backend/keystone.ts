@@ -38,11 +38,11 @@ export default withAuth(
       //Schema items go in here
     }),
     ui: {
-      // TODO: change this for roles
-      isAccessAllowed: () => true,
+      // Show the UI only for people who are sign in
+      isAccessAllowed: ({ session }) => !!session?.data,
     },
     session: withItemData(statelessSessions(sessionConfig), {
-      User: `id`
+      User: `id name email`,
     })
   })
 );
