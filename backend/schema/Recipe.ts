@@ -1,4 +1,4 @@
-import { select, text } from "@keystone-next/fields";
+import { relationship, select, text } from "@keystone-next/fields";
 import { list } from "@keystone-next/keystone/schema";
 
 export const Recipe = list({
@@ -9,6 +9,15 @@ export const Recipe = list({
       ui: {
         displayMode: 'textarea',
       }
+    }),
+    photo: relationship({
+      ref: 'RecipeImage.recipe',
+      ui: {
+        displayMode: 'cards',
+        cardFields: ['image', 'altText'],
+        inlineCreate: { fields: ['image', 'altText'] },
+        inlineEdit: { fields: ['image', 'altText'] },
+      },
     }),
     status: select({
       options: [
@@ -23,6 +32,6 @@ export const Recipe = list({
         createView: { fieldMode: 'hidden' },
       },
     }),
-    // TODO photo
+    // TODO add relationship to products
   }
 });

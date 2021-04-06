@@ -1,3 +1,4 @@
+import { RecipeImage } from './schema/RecipeImage';
 import { Recipe } from './schema/Recipe';
 import { createAuth } from '@keystone-next/auth';
 import { withItemData, statelessSessions } from '@keystone-next/keystone/session';
@@ -39,6 +40,7 @@ export default withAuth(
       User,
       Product,
       Recipe,
+      RecipeImage,
       //Schema items go in here
     }),
     ui: {
