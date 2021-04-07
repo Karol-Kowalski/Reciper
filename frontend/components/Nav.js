@@ -6,7 +6,7 @@ import SignOut from './SignOut';
 export default function Nav() {
   return (
     <NavStyle>
-      <Link href="/myrecepies">My Recepies</Link>
+      <Link href="/myrecipes">My Recipes</Link>
       <Link href="/likes">Likes</Link>
       <Link href="/account">Account</Link>
       <SignOut />
