@@ -1,10 +1,10 @@
-import { integer, select, text } from "@keystone-next/fields";
+import { integer, relationship, select, text } from "@keystone-next/fields";
 import { list } from "@keystone-next/keystone/schema";
 
 export const Product = list({
   //access:
   fields: {
-    name: text({isRequired: true }),
+    name: text({ isRequired: true }),
     description: text({
       ui: {
         displayMode: 'textarea',
@@ -12,10 +12,10 @@ export const Product = list({
     }),
     status: select({
       options: [
-        { label: 'draft', value: 'DRAFT'},
-        { label: 'waiting', value: 'WAITING'},
-        { label: 'accepted', value: 'ACCEPTED'},
-        { label: 'available', value: 'AVAILABLE'},
+        { label: 'Draft', value: 'DRAFT'},
+        { label: 'Waiting', value: 'WAITING'},
+        { label: 'Accepted', value: 'ACCEPTED'},
+        { label: 'Available', value: 'AVAILABLE'},
       ],
       defaultValue: 'draft',
       ui: {

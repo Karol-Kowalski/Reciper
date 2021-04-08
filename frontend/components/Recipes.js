@@ -1,25 +1,40 @@
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
+import styled from 'styled-components';
+import Recipe from './Recipe';
 
 const ALL_RECIPES_QUERY = gql`
   query ALL_RECIPES_QUERY {
     allRecipes {
       id
       name
+      description
+      photo {
+        id
+        image {
+          publicUrlTransformed
+        }
+      }
     }
   }
 `;
 
+const RecipesListStyles = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 60px;
+`;
+
 export default function Recipes() {
   const { data, error, loading } = useQuery(ALL_RECIPES_QUERY);
-  console.log(data, error, loading);
   if (loading) return <p>loading...</p>; // make loader here
   if (error) return <p>Error: {error.message}</p>;
+  console.log(data, error, loading)
   return (
-    <div>
+    <RecipesListStyles>
       {data.allRecipes.map((recipe) => (
-        <p key={recipe.id}>{recipe.name}</p>
+        <Recipe key={recipe.id} recipe={recipe} />
       ))}
-    </div>
+    </RecipesListStyles>
   );
 }

@@ -5,7 +5,7 @@ export const Recipe = list({
   // TODO add access
   fields: {
     name: text({ isRequired: true }),
-    decription: text({
+    description: text({
       ui: {
         displayMode: 'textarea',
       }
@@ -26,8 +26,8 @@ export const Recipe = list({
     status: select({
       options: [
         { label: 'Draft', value: 'DRAFT'},
-        { label: 'waiting', value: 'WAITING'},
-        { label: 'accepted', value: 'ACCEPTED'},
+        { label: 'Waiting', value: 'WAITING'},
+        { label: 'Accepted', value: 'ACCEPTED'},
         { label: 'Private', value: 'PRIVATE'},
       ],
       defaultValue: 'Draft',
