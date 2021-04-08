@@ -1,10 +1,11 @@
+import { withItemData, statelessSessions } from '@keystone-next/keystone/session';
+import { config, createSchema } from '@keystone-next/keystone/schema';
+import { createAuth } from '@keystone-next/auth';
 import { RecipeImage } from './schema/RecipeImage';
 import { Recipe } from './schema/Recipe';
-import { createAuth } from '@keystone-next/auth';
-import { withItemData, statelessSessions } from '@keystone-next/keystone/session';
 import { User } from './schema/User';
 import { Product } from './schema/Product';
-import { config, createSchema } from '@keystone-next/keystone/schema';
+import { ProductsList } from './schema/ProductsList';
 import 'dotenv/config';
 
 const dataBaseUrl = process.env.DATABASE_URL;
@@ -41,6 +42,7 @@ export default withAuth(
       Product,
       Recipe,
       RecipeImage,
+      ProductsList,
       //Schema items go in here
     }),
     ui: {

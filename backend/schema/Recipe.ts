@@ -8,8 +8,10 @@ export const Recipe = list({
     description: text({
       ui: {
         displayMode: 'textarea',
-      }
+      },
     }),
+    preparation: text({ isRequired: true }),
+    portions: integer(),
     photo: relationship({
       ref: 'RecipeImage.recipe',
       ui: {
@@ -19,8 +21,8 @@ export const Recipe = list({
         inlineEdit: { fields: ['image', 'altText'] },
       },
     }),
-    recipeProducts: relationship({
-      ref: 'Product',
+    productsList: relationship({
+      ref: 'ProductsList.recipe',
       many: true,
     }),
     status: select({
@@ -37,5 +39,5 @@ export const Recipe = list({
       },
     }),
     // TODO add relationship to products
-  }
+  },
 });

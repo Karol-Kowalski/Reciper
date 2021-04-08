@@ -8,14 +8,14 @@ export const Product = list({
     description: text({
       ui: {
         displayMode: 'textarea',
-      }
+      },
     }),
     status: select({
       options: [
-        { label: 'Draft', value: 'DRAFT'},
-        { label: 'Waiting', value: 'WAITING'},
-        { label: 'Accepted', value: 'ACCEPTED'},
-        { label: 'Available', value: 'AVAILABLE'},
+        { label: 'Draft', value: 'DRAFT' },
+        { label: 'Waiting', value: 'WAITING' },
+        { label: 'Accepted', value: 'ACCEPTED' },
+        { label: 'Available', value: 'AVAILABLE' },
       ],
       defaultValue: 'draft',
       ui: {
