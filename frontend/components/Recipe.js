@@ -1,14 +1,26 @@
 import Link from 'next/link';
-import Item from './styles/Item';
+import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';
+import RecipeTag from './styles/RecipeTag';
 
 export default function Recipe({ recipe }) {
   return (
-    <Item>
-      <img src={recipe.photo.image.publicUrlTransformed} alt={recipe.name} />
+    <ItemStyles>
+      <img src={recipe?.photo?.image?.publicUrlTransformed} alt={recipe.name} />
       <Title>
         <Link href={`/recipe/${recipe.id}`}>{recipe.name}</Link>
       </Title>
-    </Item>
+      <RecipeTag>
+        <div>
+          {recipe.prepareTime}
+        </div>
+        <div>
+          {recipe.wholeTime}
+        </div>
+        <div>
+          {/* TODO add favourite star button */}
+        </div>
+      </RecipeTag>
+    </ItemStyles>
   );
 }

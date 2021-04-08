@@ -29,7 +29,7 @@ export default function Recipes() {
   const { data, error, loading } = useQuery(ALL_RECIPES_QUERY);
   if (loading) return <p>loading...</p>; // make loader here
   if (error) return <p>Error: {error.message}</p>;
-  console.log(data, error, loading)
+  console.log(data, error, loading);
   return (
     <RecipesListStyles>
       {data.allRecipes.map((recipe) => (
