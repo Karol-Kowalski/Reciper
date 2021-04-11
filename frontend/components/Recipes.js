@@ -3,12 +3,15 @@ import gql from 'graphql-tag';
 import styled from 'styled-components';
 import Recipe from './Recipe';
 
-const ALL_RECIPES_QUERY = gql`
+export const ALL_RECIPES_QUERY = gql`
   query ALL_RECIPES_QUERY {
     allRecipes {
       id
       name
       description
+      preparation
+      preparationTime
+      cookingTime
       photo {
         id
         image {
@@ -22,7 +25,7 @@ const ALL_RECIPES_QUERY = gql`
 const RecipesListStyles = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 60px;
+  grid-gap: 40px;
 `;
 
 export default function Recipes() {
@@ -31,10 +34,12 @@ export default function Recipes() {
   if (error) return <p>Error: {error.message}</p>;
   console.log(data, error, loading);
   return (
-    <RecipesListStyles>
-      {data.allRecipes.map((recipe) => (
-        <Recipe key={recipe.id} recipe={recipe} />
-      ))}
-    </RecipesListStyles>
+    <div>
+      <RecipesListStyles>
+        {data.allRecipes.map((recipe) => (
+          <Recipe key={recipe.id} recipe={recipe} />
+        ))}
+      </RecipesListStyles>
+    </div>
   );
 }

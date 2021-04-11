@@ -4,23 +4,33 @@ import Header from './Header';
 
 const GlobalStyles = createGlobalStyle`
 :root {
-  --max-width: 1000px;
+  --maxWidth: 1000px;
   --black: #393939;
   --grey: #3A3A3A;
   --orange: orange;
   --white: #dddddd;
   --loader: #2872FB;
 }
-*, *:before, *:after {
-    box-sizing: inherit;
+  html {
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 62.5%;
+    box-sizing: border-box;
   }
-html {
-  background-color: var(--black);
-  color: var(--white);
-}
+  *, *:before, *:after {
+      box-sizing: inherit;
+    }
+  body{
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+  }
 `;
 
-const InnerStyle = styled.div``;
+const InnerStyle = styled.div`
+  max-width: var(--maxWidth);
+  margin: 0 auto;
+`;
 
 export default function Page({ children }) {
   return (

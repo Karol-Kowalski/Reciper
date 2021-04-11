@@ -6,20 +6,16 @@ import RecipeTag from './styles/RecipeTag';
 export default function Recipe({ recipe }) {
   return (
     <ItemStyles>
-      <img src={recipe?.photo?.image?.publicUrlTransformed} alt={recipe.name} />
-      <Title>
-        <Link href={`/recipe/${recipe.id}`}>{recipe.name}</Link>
-      </Title>
+      <div>
+        <img src={recipe?.photo?.image?.publicUrlTransformed} alt={recipe.name} />
+        <Title>
+          <Link href={`/recipe/${recipe.id}`}>{recipe.name}</Link>
+        </Title>
+      </div>
       <RecipeTag>
-        <div>
-          {recipe.prepareTime}
-        </div>
-        <div>
-          {recipe.wholeTime}
-        </div>
-        <div>
-          {/* TODO add favourite star button */}
-        </div>
+        <div>prep: {recipe.preparationTime} min</div>
+        <div>cooking: {recipe.cookingTime} min</div>
+        {/* TODO add favourite star button */}
       </RecipeTag>
     </ItemStyles>
   );

@@ -7,22 +7,23 @@ const Logo = styled.div`
   cursor: pointer;
 `;
 
-const HeaderStyle = styled.header``;
+const HeaderStyle = styled.header`
+  display: grid;
+  grid-template-columns: 1fr auto;
+`;
 
 export default function Header() {
   return (
     <HeaderStyle>
-      <div>
-        <Logo>
-          <Link href="/" passHref>
-            <div>
-              <h2>RECIPER</h2>
-              <h3>be ECO</h3>
-            </div>
-          </Link>
-        </Logo>
-        <Nav />
-      </div>
+      <Logo>
+        <Link href="/" passHref>
+          <div>
+            <h2>RECIPER</h2>
+            <h3>be ECO</h3>
+          </div>
+        </Link>
+      </Logo>
+      <Nav />
     </HeaderStyle>
   );
 }
