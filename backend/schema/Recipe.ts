@@ -10,6 +10,8 @@ export const Recipe = list({
         displayMode: 'textarea',
       },
     }),
+    preparationTime: integer(),
+    cookingTime: integer(),
     preparation: text({ isRequired: true }),
     portions: integer(),
     photo: relationship({

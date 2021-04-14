@@ -1,6 +1,6 @@
-import Form from './styles/Form';
-import Router from 'next/router'
+import Router from 'next/router';
 import { gql, useMutation } from '@apollo/client';
+import Form from './styles/Form';
 import { ALL_RECIPES_QUERY } from './Recipes';
 
 // add mutation
@@ -36,20 +36,23 @@ const CREATE_RECIPE_MUTATION = gql`
 
 export default function CreateRecipe() {
   // add custom hook useForm
-  
-  const [createRecipe, {loading, error, data}] = useMutation(CREATE_RECIPE_MUTATION, {
-    variables: inputs,
-    refetchQueries: [{ query: ALL_RECIPES_QUERY }],
-  });
-  
-  function handleSubmit(e) {
+
+  const [createRecipe, { loading, error, data }] = useMutation(
+    CREATE_RECIPE_MUTATION,
+    {
+      variables: inputs,
+      refetchQueries: [{ query: ALL_RECIPES_QUERY }],
+    }
+  );
+
+  async function handleSubmit(e) {
     e.preventDefault();
     const res = await createRecipe();
 
     Router.push({
       pathname: `/recipe/${res.data.createRecipe.id}`,
     });
-  };
+  }
 
   return (
     <Form onSubmit={handleSubmit}>

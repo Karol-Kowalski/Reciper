@@ -7,7 +7,10 @@ export default function Recipe({ recipe }) {
   return (
     <ItemStyles>
       <div>
-        <img src={recipe?.photo?.image?.publicUrlTransformed} alt={recipe.name} />
+        <img
+          src={recipe?.photo?.image?.publicUrlTransformed}
+          alt={recipe.name}
+        />
         <Title>
           <Link href={`/recipe/${recipe.id}`}>{recipe.name}</Link>
         </Title>
