@@ -43,6 +43,7 @@ export default function SignIn() {
       <div>Sing Into Your Profile</div>
       <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="email">
+          Email
           <input
             type="email"
             name="email"
@@ -54,6 +55,7 @@ export default function SignIn() {
           />
         </label>
         <label htmlFor="password">
+          Password
           <input
             type="password"
             name="password"
@@ -64,6 +66,7 @@ export default function SignIn() {
             onChange={handleChange}
           />
         </label>
+        <button type="submit">Sign In</button>
       </fieldset>
     </Form>
   );

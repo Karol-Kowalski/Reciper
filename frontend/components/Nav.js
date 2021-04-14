@@ -9,6 +9,7 @@ export default function Nav() {
       <Link href="/myrecipes">My Recipes</Link>
       <Link href="/likes">Likes</Link>
       <Link href="/account">Account</Link>
+      <Link href="/newrecipe">New Recipe</Link>
       <SignOut />
       <Link href="/signin">Sign In</Link>
       <Search />

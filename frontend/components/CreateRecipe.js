@@ -2,6 +2,7 @@ import Router from 'next/router';
 import { gql, useMutation } from '@apollo/client';
 import Form from './styles/Form';
 import { ALL_RECIPES_QUERY } from './Recipes';
+import { useForm } from '../lib/useForm';
 
 // add mutation
 const CREATE_RECIPE_MUTATION = gql`
@@ -35,7 +36,7 @@ const CREATE_RECIPE_MUTATION = gql`
 `;
 
 export default function CreateRecipe() {
-  // add custom hook useForm
+  const { inputs, handleChange, resetForm } = useForm();
 
   const [createRecipe, { loading, error, data }] = useMutation(
     CREATE_RECIPE_MUTATION,
@@ -48,7 +49,7 @@ export default function CreateRecipe() {
   async function handleSubmit(e) {
     e.preventDefault();
     const res = await createRecipe();
-
+    resetForm();
     Router.push({
       pathname: `/recipe/${res.data.createRecipe.id}`,
     });
@@ -56,30 +57,67 @@ export default function CreateRecipe() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <fieldset>
+      <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="name">
           Name
-          <input type="text" id="name" name="name" />
+          <input
+            required
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Recipe Name"
+            value={inputs.name}
+            onChange={handleChange}
+          />
         </label>
         <label htmlFor="image">
           Image
-          <input type="file" id="image" name="image" />
+          <input type="file" id="image" name="image" onChange={handleChange} />
         </label>
         <label htmlFor="preparationTime">
           Preparation Time
-          <input type="number" id="preparationTime" name="preparationTime" />
+          <input
+            type="number"
+            id="preparationTime"
+            name="preparationTime"
+            placeholder="Preparation Time"
+            value={inputs.preparationTime}
+            onChange={handleChange}
+          />
         </label>
         <label htmlFor="cookingTime">
           Cooking Time
-          <input type="number" id="cookingTime" name="cookingTime" />
+          <input
+            type="number"
+            id="cookingTime"
+            name="cookingTime"
+            placeholder="Cooking Time"
+            value={inputs.cookingTime}
+            onChange={handleChange}
+          />
         </label>
         <label htmlFor="portions">
           Portions
-          <input type="number" id="portions" name="portions" />
+          <input
+            type="number"
+            id="portions"
+            name="portions"
+            placeholder="portions"
+            value={inputs.portions}
+            onChange={handleChange}
+          />
         </label>
         <label htmlFor="description">
           Cooking description
-          <input type="number" id="description" name="description" />
+          <textarea
+            required
+            type="textarea"
+            id="description"
+            name="description"
+            placeholder="How to prepare this fantastic food?"
+            value={inputs.description}
+            onChange={handleChange}
+          />
         </label>
       </fieldset>
     </Form>
