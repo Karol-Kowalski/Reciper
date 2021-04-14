@@ -39,13 +39,17 @@ export default function SignIn() {
   }
 
   return (
-    <Form method="POST" onSubmit={handleChange}>
+    <Form method="POST" onSubmit={handleSubmit}>
+      <div>Sing Into Your Profile</div>
       <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="email">
           <input
             type="email"
             name="email"
             id="email"
+            placeholder="Your email"
+            autoComplete="email"
+            value={inputs.email}
             onChange={handleChange}
           />
         </label>
@@ -54,6 +58,9 @@ export default function SignIn() {
             type="password"
             name="password"
             id="password"
+            placeholder="Password"
+            autoComplete="password"
+            value={inputs.password}
             onChange={handleChange}
           />
         </label>
