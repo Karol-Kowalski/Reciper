@@ -26,7 +26,6 @@ const CREATE_RECIPE_MUTATION = gql`
     ) {
       id
       description
-      id
       name
       preparationTime
       cookingTime
