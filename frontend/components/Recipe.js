@@ -18,7 +18,7 @@ export default function Recipe({ recipe }) {
       <RecipeTag>
         <div>prep: {recipe.preparationTime} min</div>
         <div>cooking: {recipe.cookingTime} min</div>
-        {/* TODO add favourite star button */}
+        <img src="/favorite_border_black_24dp.png" alt="favourite heart" />
       </RecipeTag>
     </ItemStyles>
   );
