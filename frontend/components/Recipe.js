@@ -2,18 +2,18 @@ import Link from 'next/link';
 import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';
 import RecipeTag from './styles/RecipeTag';
+import FavouriteHeart from './FavouriteHeart';
 
 export default function Recipe({ recipe }) {
+  const photoURL =
+    recipe?.photo?.image?.publicUrlTransformed || '/temporaryPhoto.svg';
   return (
     <ItemStyles>
       <Link href={`/recipe/${recipe.id}`} passHref>
         <div className="photo">
-          <img
-            src={recipe?.photo?.image?.publicUrlTransformed}
-            alt={recipe.name}
-          />
+          <FavouriteHeart favourite="true" />
+          <img src={photoURL} alt={recipe.name} />
           <Title>
-            <img src="/favorite_border_white_24dp.svg" alt="favourite heart" />
             <p>{recipe.name}</p>
           </Title>
         </div>
