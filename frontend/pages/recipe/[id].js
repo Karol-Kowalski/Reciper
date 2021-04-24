@@ -1,5 +1,5 @@
-import SingleRecipe from '../../components/SingleRecipe'
+import SingleRecipe from '../../components/SingleRecipe';
 
 export default function SingleRecipePage({ query }) {
-  return <SingleRecipe id={query.id}/>
+  return <SingleRecipe id={query.id} />;
 }
