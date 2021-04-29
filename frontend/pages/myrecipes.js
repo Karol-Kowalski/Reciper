@@ -1,3 +1,5 @@
+import MyRecipes from '../components/MyRecipes';
+
 export default function myrecipes() {
-  return <div>my recepies</div>;
+  return <MyRecipes />;
 }

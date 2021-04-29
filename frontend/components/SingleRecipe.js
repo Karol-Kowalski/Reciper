@@ -30,6 +30,7 @@ const ImageStyle = styled.div`
   height: 300px;
   display: flex;
   align-items: center;
+  justify-content: center;
   img {
     max-width: var(--maxWidth);
   }
@@ -61,7 +62,7 @@ export default function SingleRecipe({ id }) {
           </p>
           <p className="stats">
             <img src="/local_pizza_black_24dp.svg" />
-            Portions: {Recipe.portions} os.
+            Portions: {Recipe.portions} per.
           </p>
         </div>
       </div>
@@ -73,7 +74,7 @@ export default function SingleRecipe({ id }) {
       </ImageStyle>
       <div>
         {/* add product list component here */}
-        <p>{Recipe.preparation}</p>
+        <p>{Recipe.description}</p>
       </div>
     </RecipeStyle>
   );

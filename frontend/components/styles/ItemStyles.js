@@ -10,6 +10,13 @@ const ItemStyles = styled.div`
     width: 100%;
     object-fit: cover;
   }
+  .photo > :first-child {
+    opacity: 0;
+    transition: opacity ease-in-out 0.15s;
+  }
+  .photo:hover > :first-child {
+    opacity: 1;
+  }
 `;
 
 export default ItemStyles;

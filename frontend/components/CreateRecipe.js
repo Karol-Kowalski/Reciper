@@ -58,7 +58,7 @@ export default function CreateRecipe() {
     <Form onSubmit={handleSubmit}>
       <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="name">
-          Name
+          Recipe Name
           <input
             required
             type="text"
@@ -67,6 +67,7 @@ export default function CreateRecipe() {
             placeholder="Recipe Name"
             value={inputs.name}
             onChange={handleChange}
+            maxLength="130"
           />
         </label>
         <label htmlFor="image">
@@ -79,7 +80,7 @@ export default function CreateRecipe() {
             type="number"
             id="preparationTime"
             name="preparationTime"
-            placeholder="Preparation Time"
+            placeholder="[min]"
             value={inputs.preparationTime}
             onChange={handleChange}
           />
@@ -90,7 +91,7 @@ export default function CreateRecipe() {
             type="number"
             id="cookingTime"
             name="cookingTime"
-            placeholder="Cooking Time"
+            placeholder="[min]"
             value={inputs.cookingTime}
             onChange={handleChange}
           />
@@ -118,6 +119,7 @@ export default function CreateRecipe() {
             onChange={handleChange}
           />
         </label>
+        <button type="submit">+ Add Recipe</button>
       </fieldset>
     </Form>
   );

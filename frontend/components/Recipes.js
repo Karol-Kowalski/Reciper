@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
-import styled from 'styled-components';
 import Recipe from './Recipe';
+import { RecipesListStyles } from './styles/RecipeListStyles';
 
 export const ALL_RECIPES_QUERY = gql`
   query ALL_RECIPES_QUERY {
@@ -9,7 +9,6 @@ export const ALL_RECIPES_QUERY = gql`
       id
       name
       description
-      preparation
       preparationTime
       cookingTime
       photo {
@@ -20,12 +19,6 @@ export const ALL_RECIPES_QUERY = gql`
       }
     }
   }
-`;
-
-const RecipesListStyles = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 40px;
 `;
 
 export default function Recipes() {

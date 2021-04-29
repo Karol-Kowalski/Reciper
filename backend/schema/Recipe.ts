@@ -1,5 +1,5 @@
-import { integer, relationship, select, text } from "@keystone-next/fields";
-import { list } from "@keystone-next/keystone/schema";
+import { integer, relationship, select, text } from '@keystone-next/fields';
+import { list } from '@keystone-next/keystone/schema';
 
 export const Recipe = list({
   // TODO add access
@@ -12,7 +12,7 @@ export const Recipe = list({
     }),
     preparationTime: integer(),
     cookingTime: integer(),
-    preparation: text({ isRequired: true }),
+    // preparation: text({ isRequired: true }),
     portions: integer(),
     photo: relationship({
       ref: 'RecipeImage.recipe',
@@ -29,16 +29,20 @@ export const Recipe = list({
     }),
     status: select({
       options: [
-        { label: 'Draft', value: 'DRAFT'},
-        { label: 'Waiting', value: 'WAITING'},
-        { label: 'Accepted', value: 'ACCEPTED'},
-        { label: 'Private', value: 'PRIVATE'},
+        { label: 'Draft', value: 'DRAFT' },
+        { label: 'Waiting', value: 'WAITING' },
+        { label: 'Accepted', value: 'ACCEPTED' },
+        { label: 'Private', value: 'PRIVATE' },
       ],
       defaultValue: 'Draft',
       ui: {
         displayMode: 'segmented-control',
         createView: { fieldMode: 'hidden' },
       },
+    }),
+    user: relationship({
+      ref: 'User.recipes',
+      many: false,
     }),
     // TODO add relationship to products
   },

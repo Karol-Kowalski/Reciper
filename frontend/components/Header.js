@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Nav from './Nav';
 
 const Logo = styled.div`
+  padding: 2rem;
+  margin-left: 5rem;
   color: var(--orange);
   cursor: pointer;
 `;

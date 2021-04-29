@@ -1,5 +1,4 @@
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
+import { gql, useQuery } from '@apollo/client';
 
 const CURRENT_USER_QUERY = gql`
   query {
@@ -8,6 +7,19 @@ const CURRENT_USER_QUERY = gql`
         id
         name
         email
+        recipes {
+          id
+          name
+          description
+          preparationTime
+          cookingTime
+          photo {
+            id
+            image {
+              publicUrlTransformed
+            }
+          }
+        }
       }
     }
   }

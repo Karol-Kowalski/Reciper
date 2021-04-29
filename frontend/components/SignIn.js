@@ -24,7 +24,10 @@ const SIGNIN_MUTATION = gql`
 
 export default function SignIn() {
   const router = useRouter();
-  const { inputs, handleChange, resetForm } = useForm();
+  const { inputs, handleChange, resetForm } = useForm({
+    email: '',
+    password: '',
+  });
 
   const [signIn, { data, loading, error }] = useMutation(SIGNIN_MUTATION, {
     variables: inputs,
