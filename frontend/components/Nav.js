@@ -20,6 +20,7 @@ export default function Nav() {
       )}
       {!user && (
         <>
+          <Link href="/singup">Sign Up</Link>
           <Link href="/signin">Sign In</Link>
         </>
       )}

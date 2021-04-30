@@ -11,7 +11,7 @@ export default function Recipe({ recipe }) {
     <ItemStyles>
       <Link href={`/recipe/${recipe.id}`} passHref>
         <div className="photo">
-          <FavouriteHeart favourite="false" id={recipe.id}/>
+          <FavouriteHeart favourite="false" id={recipe.id} />
           <img src={photoURL} alt={recipe.name} />
           <Title>
             <p>{recipe.name}</p>

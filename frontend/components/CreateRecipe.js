@@ -1,8 +1,8 @@
 import Router from 'next/router';
 import { gql, useMutation } from '@apollo/client';
-import Form from './styles/Form';
 import { ALL_RECIPES_QUERY } from './Recipes';
 import { useForm } from '../lib/useForm';
+import Form from './styles/Form';
 
 // add mutation
 const CREATE_RECIPE_MUTATION = gql`
@@ -102,7 +102,7 @@ export default function CreateRecipe() {
             type="number"
             id="portions"
             name="portions"
-            placeholder="portions"
+            placeholder="per."
             value={inputs.portions}
             onChange={handleChange}
           />
