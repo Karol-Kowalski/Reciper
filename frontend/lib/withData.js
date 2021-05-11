@@ -1,4 +1,5 @@
 import { ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client';
+import { mergeDeep } from '@apollo/client/utilities';
 import { onError } from '@apollo/link-error';
 import { getDataFromTree } from '@apollo/react-ssr';
 import { createUploadLink } from 'apollo-upload-client';
@@ -36,6 +37,13 @@ function createClient({ headers, initialState }) {
       typePolicies: {
         Query: {
           fields: {
+            Favourite: {
+              favouriteRecipes: {
+                merge(existing = [], incoming) {
+                  return { ...existing, ...incoming };
+                }
+              },
+            },
             // TODO: We will add this together!
             // allProducts: pagination Field();
           },

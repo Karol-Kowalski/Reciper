@@ -1,3 +1,5 @@
+import LikesRecipes from '../components/LikeRecipes';
+
 export default function likes() {
-  return <div>likes recepies</div>;
+  return <LikesRecipes />;
 }

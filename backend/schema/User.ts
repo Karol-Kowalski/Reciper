@@ -14,7 +14,7 @@ export const User = list({
     }),
     // TODO add roles, recipes,
     favourites: relationship({
-      ref: 'Favourites.user',
+      ref: 'Favourite.user',
       many: false,
     }),
   },

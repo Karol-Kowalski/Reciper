@@ -7,6 +7,12 @@ const CURRENT_USER_QUERY = gql`
         id
         name
         email
+        favourites {
+          id
+          favouriteRecipes {
+            id
+          }
+        }
         recipes {
           id
           name

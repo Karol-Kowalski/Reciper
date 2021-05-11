@@ -6,6 +6,7 @@ import { Recipe } from './schema/Recipe';
 import { User } from './schema/User';
 import { Product } from './schema/Product';
 import { ProductsList } from './schema/ProductsList';
+import { Favourite } from './schema/Favourite';
 import 'dotenv/config';
 
 const dataBaseUrl = process.env.DATABASE_URL;
@@ -43,6 +44,7 @@ export default withAuth(
       Recipe,
       RecipeImage,
       ProductsList,
+      Favourite,
       //Schema items go in here
     }),
     ui: {
