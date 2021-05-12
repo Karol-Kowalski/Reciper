@@ -32,7 +32,8 @@ export default function LikeRecipes() {
   const { userFavouritesID } = useFavourite();
   const favouritesData = userFavouritesID();
   const { data, error, loading } = useQuery(ALL_FAVOURITES_RECIPES_QUERY);
-  const favouritesRecipes = data?.authenticatedItem?.favourites?.favouriteRecipes;
+  const favouritesRecipes =
+    data?.authenticatedItem?.favourites?.favouriteRecipes;
   return (
     <div>
       <RecipesListStyles>

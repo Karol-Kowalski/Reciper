@@ -41,7 +41,7 @@ function createClient({ headers, initialState }) {
               favouriteRecipes: {
                 merge(existing = [], incoming) {
                   return { ...existing, ...incoming };
-                }
+                },
               },
             },
             // TODO: We will add this together!

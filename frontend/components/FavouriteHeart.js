@@ -65,7 +65,7 @@ export default function FavouriteHeart({
     if (!isFavourite) {
       add();
     }
-    remove('remove');
+    remove();
   }
   const url = isFavourite
     ? '/favorite_white_24dp.svg'

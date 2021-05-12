@@ -33,14 +33,16 @@ export default function Recipes() {
     <div>
       <RecipesListStyles>
         {data.allRecipes.map((recipe) => {
-          const isFavourite = !!favouritesData.favouriteRecipes.find(
-            (item) => recipe.id === item.id
-          );
+          const isFavourite =
+            !!favouritesData?.favouriteRecipes.find(
+              (item) => recipe.id === item.id
+            ) || null;
+
           return (
             <Recipe
               key={recipe.id}
               recipe={recipe}
-              favouritesID={favouritesData.id}
+              favouritesID={favouritesData?.id}
               isFavourite={isFavourite}
             />
           );

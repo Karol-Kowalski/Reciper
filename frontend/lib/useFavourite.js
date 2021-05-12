@@ -15,30 +15,6 @@ const USER_FAVOURITES_ID_QUERY = gql`
   }
 `;
 
-const ADD_FAVOURITE_MUTATION = gql`
-  mutation ADD_FAVOURITE_MUTATION($id: ID!, $recipeID: recipeID!) {
-    updateFavourite(
-      id: $id
-      data: { favouriteRecipes: { connect: { id: $recipeID } } }
-    ) {
-      id
-      name
-    }
-  }
-`;
-
-const REMOVE_FAVOURITE_MUTATION = gql`
-  mutation ADD_FAVOURITE_MUTATION($id: ID!, $recipeID: recipeID!) {
-    updateFavourite(
-      id: $id
-      data: { favouriteRecipes: { disconnect: $recipeID } }
-    ) {
-      id
-      name
-    }
-  }
-`;
-
 export function useFavourite() {
   function userFavouritesID() {
     const { data } = useQuery(USER_FAVOURITES_ID_QUERY);

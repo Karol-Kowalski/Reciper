@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const ItemStyles = styled.div`
   .photo {
+    cursor: pointer;
     position: relative;
     display: grid;
     grid-template-columns: 1fr auto;
@@ -12,7 +13,7 @@ const ItemStyles = styled.div`
   }
   .photo > :first-child {
     opacity: 0;
-    transition: opacity ease-in-out 0.15s;
+    transition: opacity ease-in-out 0.05s;
   }
   .photo:hover > :first-child {
     opacity: 1;
