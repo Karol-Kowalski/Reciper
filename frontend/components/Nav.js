@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import NavStyle from './styles/NavStyle';
-import Search from './Search';
 import SignOut from './SignOut';
 import { useUser } from '../lib/useUser';
 
@@ -24,7 +23,6 @@ export default function Nav() {
           <Link href="/signin">Sign In</Link>
         </>
       )}
-      <Search />
     </NavStyle>
   );
 }
