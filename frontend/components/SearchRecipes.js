@@ -1,12 +1,18 @@
-import { useApolloClient, useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
-import { useFavourite } from '../lib/useFavourite';
-import Recipe from './Recipe';
+import { gql, useQuery } from '@apollo/client';
 import { RecipesListStyles } from './styles/RecipeListStyles';
+import Recipe from './Recipe';
+import { useFavourite } from '../lib/useFavourite';
 
-export const ALL_RECIPES_QUERY = gql`
-  query ALL_RECIPES_QUERY {
-    allRecipes {
+const SEARCH_RECIPES_QUERY = gql`
+  query SEARCH_RECIPES_QUERY($searchTerms: String!) {
+    searchTerms: allRecipes(
+      where: {
+        OR: [
+          { name_contains_i: $searchTerms }
+          { description_contains_i: $searchTerms }
+        ]
+      }
+    ) {
       id
       name
       description
@@ -22,16 +28,21 @@ export const ALL_RECIPES_QUERY = gql`
   }
 `;
 
-export default function Recipes() {
+export default function SearchRecipes({ query }) {
   const { userFavouritesID } = useFavourite();
   const favouritesData = userFavouritesID();
-  const { data, error, loading } = useQuery(ALL_RECIPES_QUERY);
-  if (loading) return <p>loading...</p>; // make loader here
-  if (error) return <p>Error: {error.message}</p>;
+  const { data, loading, error } = useQuery(SEARCH_RECIPES_QUERY, {
+    variables: {
+      searchTerms: query.searchTerms,
+    },
+  });
+  console.log(data);
+  if (data?.searchTerms?.length === 0 || data === undefined)
+    return <div>There's no recipes with searching phrase!</div>;
   return (
     <div>
       <RecipesListStyles>
-        {data.allRecipes.map((recipe) => {
+        {data.searchTerms.map((recipe) => {
           const isFavourite =
             !!favouritesData?.favouriteRecipes.find(
               (item) => recipe.id === item.id

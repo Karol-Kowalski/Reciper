@@ -1,52 +1,47 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql, useLazyQuery } from '@apollo/client';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { useForm } from '../lib/useForm';
+import { useState } from 'react';
 
-const SEARCH_RECIPES_QUERY = gql`
-  query SEARCH_RECIPES_QUERY($searchTerms: String!) {
-    searchTerms: allRecipes(
-      where: {
-        OR: [
-          { name_contains_i: $searchTerms }
-          { description_contains_i: $searchTerms }
-        ]
-      }
-    ) {
-      id
-      name
-      description
-      preparationTime
-      cookingTime
-      photo {
-        id
-        image {
-          publicUrlTransformed
-        }
-      }
+const SearchStyle = styled.div`
+  min-width: 50rem;
+  form {
+    display: flex;
+    input {
+      width: 100%;
+      padding: 0.5rem;
     }
   }
 `;
 
-const SearchStyle = styled.div`
-  min-width: 50rem;
-  input {
-    width: 100%;
-    padding: 0.5rem;
-  }
-`;
-
 export default function Search() {
-  const { inputs, handleChange, resetForm } = useForm();
-  const { data, error, loading } = useQuery(SEARCH_RECIPES_QUERY, { fetchPolicy: 'no-cache' });
-  console.log(data);
+  const router = useRouter();
+  const [searchTerms, setSearchTerms] = useState('');
+  function executeSearch(e) {
+    e.preventDefault();
+    if (!searchTerms) return;
+    router.push({
+      pathname: '/search',
+      query: { searchTerms },
+    });
+  }
+  function changeSearchTerms(e) {
+    setSearchTerms(e.target.value);
+  }
   return (
     <SearchStyle>
-      <input
-        type="search"
-        value={inputs.search}
-        placeholder="Search"
-        onChange={handleChange}
-      />
+      <form>
+        <input
+          type="text"
+          name="search"
+          value={searchTerms}
+          placeholder="Search"
+          onChange={changeSearchTerms}
+        />
+        <button type="submit" onClick={executeSearch}>
+          OK
+        </button>
+      </form>
     </SearchStyle>
   );
 }
