@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import { gql, useMutation } from '@apollo/client';
+import { gql, useApolloClient, useMutation, useQuery } from '@apollo/client';
 import { ALL_RECIPES_QUERY } from './Recipes';
 import { useForm } from '../lib/useForm';
 import Form from './styles/Form';
@@ -7,6 +7,7 @@ import Form from './styles/Form';
 // add mutation
 const CREATE_RECIPE_MUTATION = gql`
   mutation CREATE_RECIPE_MUTATION(
+    $userID: ID!
     $image: Upload
     $name: String!
     $preparationTime: Int
@@ -16,6 +17,7 @@ const CREATE_RECIPE_MUTATION = gql`
   ) {
     createRecipe(
       data: {
+        user: { connect: { id: $userID } }
         photo: { create: { image: $image, altText: $name } }
         name: $name
         preparationTime: $preparationTime
@@ -34,13 +36,30 @@ const CREATE_RECIPE_MUTATION = gql`
   }
 `;
 
+const USER = gql`
+  query {
+    authenticatedItem {
+      ... on User {
+        id
+      }
+    }
+  }
+`;
+
 export default function CreateRecipe() {
+  const { data: userData, error: userError, loading: userLoading } = useQuery(
+    USER,
+    {
+      fetchPolicy: 'cache-first',
+    }
+  );
+  const id = userData?.authenticatedItem?.id;
   const { inputs, handleChange, resetForm } = useForm();
 
   const [createRecipe, { loading, error, data }] = useMutation(
     CREATE_RECIPE_MUTATION,
     {
-      variables: inputs,
+      variables: { ...inputs, userID: id },
       refetchQueries: [{ query: ALL_RECIPES_QUERY }],
     }
   );
@@ -53,7 +72,6 @@ export default function CreateRecipe() {
       pathname: `/recipe/${res.data.createRecipe.id}`,
     });
   }
-
   return (
     <Form onSubmit={handleSubmit}>
       <fieldset disabled={loading} aria-busy={loading}>

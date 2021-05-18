@@ -2,6 +2,7 @@ import { gql, useQuery } from '@apollo/client';
 import { RecipesListStyles } from './styles/RecipeListStyles';
 import Recipe from './Recipe';
 import { useFavourite } from '../lib/useFavourite';
+import styled from 'styled-components';
 
 const SEARCH_RECIPES_QUERY = gql`
   query SEARCH_RECIPES_QUERY($searchTerms: String!) {
@@ -28,6 +29,14 @@ const SEARCH_RECIPES_QUERY = gql`
   }
 `;
 
+const NoResults = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: var(--orange);
+  font-size: 2rem;
+`;
+
 export default function SearchRecipes({ query }) {
   const { userFavouritesID } = useFavourite();
   const favouritesData = userFavouritesID();
@@ -38,7 +47,7 @@ export default function SearchRecipes({ query }) {
   });
   console.log(data);
   if (data?.searchTerms?.length === 0 || data === undefined)
-    return <div>There's no recipes with searching phrase!</div>;
+    return <NoResults>There's no recipes with searching phrase!</NoResults>;
   return (
     <div>
       <RecipesListStyles>

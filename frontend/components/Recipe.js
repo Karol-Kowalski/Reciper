@@ -6,16 +6,18 @@ import FavouriteHeart from './FavouriteHeart';
 
 export default function Recipe({ favouritesID, isFavourite, recipe }) {
   const photoURL =
-    recipe?.photo?.image?.publicUrlTransformed || '/temporaryPhoto.svg';
+    recipe?.photo?.image?.publicUrlTransformed || '/restaurant_white_24dp.svg';
   return (
     <ItemStyles>
       <Link href={`/recipe/${recipe.id}`} passHref>
         <div className="photo">
-          <FavouriteHeart
-            isFavourite={isFavourite}
-            recipeID={recipe.id}
-            favouritesID={favouritesID}
-          />
+          <div className="heart">
+            <FavouriteHeart
+              isFavourite={isFavourite}
+              recipeID={recipe.id}
+              favouritesID={favouritesID}
+            />
+          </div>
           <img src={photoURL} alt={recipe.name} />
           <Title>
             <p>{recipe.name}</p>

@@ -4,6 +4,8 @@ import gql from 'graphql-tag';
 import styled from 'styled-components';
 import RecipeStyle from './styles/RecipeStyle';
 import Error from './Error';
+import FavouriteHeart from './FavouriteHeart';
+import { useFavourite } from '../lib/useFavourite';
 
 const SINGLE_RECIPE_QUERRY = gql`
   query SINGLE_RECIPE_QUERRY($id: ID!) {
@@ -36,14 +38,30 @@ const ImageStyle = styled.div`
   }
 `;
 
+const Description = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1rem;
+  padding-top: 2rem;
+`;
+
+const ProductsList = styled.div`
+  text-align: justify;
+`;
+
 export default function SingleRecipe({ id }) {
+  const { userFavouritesID } = useFavourite();
+  const favouritesData = userFavouritesID();
   const { data, loading, error } = useQuery(SINGLE_RECIPE_QUERRY, {
     variables: { id },
   });
-
+  const isFavourite =
+    !!favouritesData?.favouriteRecipes.find((item) => id === item.id) || null;
   if (loading) return <p>loading...</p>;
   if (error) return <Error />;
   const { Recipe } = data;
+  const imgURL =
+    Recipe?.photo?.image?.publicUrlTransformed || '/restaurant_white_48dp.svg';
   return (
     <RecipeStyle>
       <Head>
@@ -52,30 +70,33 @@ export default function SingleRecipe({ id }) {
       <div className="details">
         <h2 className="name">{Recipe.name}</h2>
         <div>
-          <p className="stats">
+          <div className="stats">
             <img src="/schedule_black_24dp.svg" />
             Preparation time: {Recipe.preparationTime} min
-          </p>
-          <p className="stats">
+          </div>
+          <div className="stats">
             <img src="/alarm_on_black_24dp.svg" />
             Cooking time: {Recipe.cookingTime} min
-          </p>
-          <p className="stats">
+          </div>
+          <div className="stats">
             <img src="/local_pizza_black_24dp.svg" />
             Portions: {Recipe.portions} per.
-          </p>
+          </div>
+          <FavouriteHeart
+            isFavourite={isFavourite}
+            recipeID={id}
+            favouritesID={favouritesData?.id}
+          />
         </div>
       </div>
       <ImageStyle>
-        <img
-          src={Recipe.photo.image.publicUrlTransformed}
-          alt={Recipe.photo.altText}
-        />
+        <img src={imgURL} alt={Recipe.photo.altText} />
       </ImageStyle>
-      <div>
+      <Description>
+        <ProductsList>products</ProductsList>
         {/* add product list component here */}
-        <p>{Recipe.description}</p>
-      </div>
+        <div>{Recipe.description}</div>
+      </Description>
     </RecipeStyle>
   );
 }

@@ -1,4 +1,3 @@
-import { gql, useLazyQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -10,6 +9,20 @@ const SearchStyle = styled.div`
     input {
       width: 100%;
       padding: 0.5rem;
+      margin-right: 1rem;
+      &:focus {
+        border: 0.3rem solid var(--orange);
+        outline: 0;
+      }
+    }
+    button[type='submit'] {
+      font-weight: 600;
+      font-size: 2rem;
+      width: 4rem;
+      border: 0;
+      border-radius: 1rem;
+      background: var(--orange);
+      cursor: pointer;
     }
   }
 `;
@@ -39,7 +52,7 @@ export default function Search() {
           onChange={changeSearchTerms}
         />
         <button type="submit" onClick={executeSearch}>
-          OK
+          &#8635;
         </button>
       </form>
     </SearchStyle>
