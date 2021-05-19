@@ -3,6 +3,8 @@ import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';
 import RecipeTag from './styles/RecipeTag';
 import FavouriteHeart from './FavouriteHeart';
+import UpdateRecipe from './UpdateRecipe';
+import DeleteRecipe from './DeleteRecipe';
 
 export default function Recipe({ favouritesID, isFavourite, recipe }) {
   const photoURL =
@@ -34,6 +36,17 @@ export default function Recipe({ favouritesID, isFavourite, recipe }) {
           <p>cooking: {recipe.cookingTime} min</p>
         </div>
       </RecipeTag>
+      <Link
+        href={{
+          pathname: 'update',
+          query: {
+            id: recipe.id,
+          },
+        }}
+      >
+        Edit
+      </Link>
+      <DeleteRecipe id={recipe.id}>Delete!</DeleteRecipe>
     </ItemStyles>
   );
 }

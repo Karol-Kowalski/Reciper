@@ -7,7 +7,7 @@ import Error from './Error';
 import FavouriteHeart from './FavouriteHeart';
 import { useFavourite } from '../lib/useFavourite';
 
-const SINGLE_RECIPE_QUERRY = gql`
+export const SINGLE_RECIPE_QUERY = gql`
   query SINGLE_RECIPE_QUERRY($id: ID!) {
     Recipe(where: { id: $id }) {
       id
@@ -52,7 +52,7 @@ const ProductsList = styled.div`
 export default function SingleRecipe({ id }) {
   const { userFavouritesID } = useFavourite();
   const favouritesData = userFavouritesID();
-  const { data, loading, error } = useQuery(SINGLE_RECIPE_QUERRY, {
+  const { data, loading, error } = useQuery(SINGLE_RECIPE_QUERY, {
     variables: { id },
   });
   const isFavourite =
