@@ -5,10 +5,12 @@ import { CURRENT_USER_QUERY } from '../lib/useUser';
 const Favourite = styled.div`
   height: 4rem;
   width: 4rem;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
+  &:hover > * {
+    transform: scale(1.2);
+  }
 `;
 
 const ADD_FAVOURITE_MUTATION = gql`

@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client';
+import { useApolloClient, useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
 
 const REMOVE_RECIPE_MUTATION = gql`
@@ -11,7 +11,7 @@ const REMOVE_RECIPE_MUTATION = gql`
 `;
 
 function update(cache, payload) {
-  cache.evict(cache.identify(payload.data.remove));
+  cache.evict(cache.identify(payload.data.deleteRecipe));
 }
 
 export default function DeleteRecipe({ id, children }) {
@@ -25,6 +25,8 @@ export default function DeleteRecipe({ id, children }) {
       await remove().catch((err) => alert(err.message));
     }
   }
+  // const cache = useApolloClient();
+  // console.log(cache);
 
   return (
     <button typeof="button" disabled={loading} onClick={removeRecipe}>
