@@ -1,8 +1,14 @@
-import { integer, relationship, select, text } from "@keystone-next/fields";
-import { list } from "@keystone-next/keystone/schema";
+import { integer, relationship, select, text } from '@keystone-next/fields';
+import { list } from '@keystone-next/keystone/schema';
+import { rules } from '../access';
 
 export const Product = list({
-  //access:
+  access: {
+    create: rules.canManageUsers,
+    read: rules.canManageUsers,
+    update: rules.canManageUsers,
+    delete: rules.canManageUsers,
+  },
   fields: {
     name: text({ isRequired: true }),
     description: text({
@@ -23,5 +29,5 @@ export const Product = list({
         createView: { fieldMode: 'hidden' },
       },
     }),
-  }
-})
+  },
+});

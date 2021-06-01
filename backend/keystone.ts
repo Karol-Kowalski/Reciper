@@ -1,4 +1,7 @@
-import { withItemData, statelessSessions } from '@keystone-next/keystone/session';
+import {
+  withItemData,
+  statelessSessions,
+} from '@keystone-next/keystone/session';
 import { config, createSchema } from '@keystone-next/keystone/schema';
 import { createAuth } from '@keystone-next/auth';
 import { RecipeImage } from './schema/RecipeImage';
@@ -7,7 +10,9 @@ import { User } from './schema/User';
 import { Product } from './schema/Product';
 import { ProductsList } from './schema/ProductsList';
 import { Favourite } from './schema/Favourite';
+import { Role } from './schema/Role';
 import 'dotenv/config';
+import { permissionsList } from './schema/fields';
 
 const dataBaseUrl = process.env.DATABASE_URL;
 
@@ -21,10 +26,10 @@ const { withAuth } = createAuth({
   identityField: 'email',
   secretField: 'password',
   initFirstItem: {
-    fields: ['name', 'email', 'password']
+    fields: ['name', 'email', 'password'],
     // TODO add initial roles here
-  }
-})
+  },
+});
 
 export default withAuth(
   config({
@@ -45,14 +50,15 @@ export default withAuth(
       RecipeImage,
       ProductsList,
       Favourite,
-      //Schema items go in here
+      Role,
+      // Schema items go in here
     }),
     ui: {
       // Show the UI only for people who are sign in
       isAccessAllowed: ({ session }) => !!session?.data,
     },
     session: withItemData(statelessSessions(sessionConfig), {
-      User: `id name email`,
-    })
+      User: `id name email role { ${permissionsList.join(' ')}}`,
+    }),
   })
 );
