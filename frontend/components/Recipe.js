@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image'
 import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';
 import RecipeTag from './styles/RecipeTag';
@@ -16,7 +17,7 @@ export default function Recipe({ favouritesID, isFavourite, recipe }) {
             <DeleteRecipe id={recipe.id}>Delete!</DeleteRecipe>
             <Link
               href={{
-                pathname: 'update',
+                pathname: '/update/',
                 query: {
                   id: recipe.id,
                 },
@@ -30,7 +31,12 @@ export default function Recipe({ favouritesID, isFavourite, recipe }) {
               favouritesID={favouritesID}
             />
           </div>
-          <img src={photoURL} alt={recipe.name} />
+          <Image 
+            src={photoURL}
+            alt={recipe.name}
+            width={240}
+            height={200}
+          />
           <Title>
             <p>{recipe.name}</p>
           </Title>

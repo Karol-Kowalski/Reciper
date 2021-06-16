@@ -27,6 +27,7 @@ const ItemStyles = styled.div`
       }
       & > *:hover {
         background-color: rgba(0, 0, 0, 1);
+        color: var(--orange);
       }
     }
   }
